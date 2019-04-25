@@ -1,8 +1,6 @@
-FROM ubuntu:16.04
-RUN apt-get update -y \
-    && apt-get install -y python3-setuptools python3-pip pyodbc
-ADD requirements.txt /src/requirements.txt
-RUN cd /src; pip3 install -r requirements.txt
-ADD . /src
+FROM python:alpine3.7
+COPY . /backend
+WORKDIR /backend
+RUN pip install -r requirements.txt
 EXPOSE 5000
-CMD ["python3", "/src/app.py"]
+CMD python ./app.py
