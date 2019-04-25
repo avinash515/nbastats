@@ -1,0 +1,30 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: nbadeployment
+  labels:
+    app: nbastats
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nbastats
+  template:
+    metadata:
+      labels:
+        app: nbastats
+    spec:
+      containers:
+      - name: nbastats1
+        image: gcr.io/nbastats/nbastats:latest
+        ports:
+        - containerPort: 5000
+        env:
+          - name: PASSWORD
+            value: 'Preston123avinash'
+          - name: DB
+            value: 'NbaStats'
+          - name: HOST
+            value: 'nbastats.database.windows.net'
+          - name: USER
+            value: 'user'
