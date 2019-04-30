@@ -4,13 +4,14 @@ import time
 import pyodbc
 import json
 import sqlalchemy
+from flask_cors import CORS
 from flask import request
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
-application = Flask(__name__)
-app = application
 
+app = Flask(__name__)
+CORS(app)
 
 class Query:
   def __init__(self, app):
@@ -53,6 +54,7 @@ class Query:
   def get_player_data(self, player_name):
     model = self.players
     qry = model.query
+    qry = qry.order_by(model.Player)
     if player_name != None:
       qry = qry.filter(model.Player == player_name)
 

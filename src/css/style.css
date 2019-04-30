@@ -496,24 +496,24 @@ body.mobile-nav-active #mobile-nav-toggle {
 /* About Us Section
 --------------------------------*/
 #about {
-  background: #fff;
   padding: 80px 0;
+  background: url(../img/black.png) center top no-repeat;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  position: relative;
 }
 
-/* #about .about-container .background {
-  min-height: 300px;
-  background: url(../img/about-img.jpg) center top no-repeat;
-  margin-bottom: 10px;
-} */
 
 #about .about-container .content {
-  background: #fff;
+  background: url(../img/black.png) center top no-repeat;
 }
 
 #about .about-container .title {
-  color: #333;
+  color: #fff;
   font-weight: 700;
   font-size: 32px;
+  padding-top: 15px;
 }
 
 @media (max-width: 768px) {
@@ -524,6 +524,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #about .about-container p {
   line-height: 26px;
+  padding-bottom: 20px;
+  color: #fff;
 }
 
 #about .about-container p:last-child {

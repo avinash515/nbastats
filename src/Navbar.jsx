@@ -2,6 +2,21 @@ import React, { Component } from 'react';
 import './css/style.css';
 
 class Navbar extends Component {
+
+  componentDidMount(){
+    var path = window.location.pathname;
+      if (path.includes('/start')) {
+        if (document.getElementById('start')) {
+          document.getElementById('start').classList.toggle('menu-active')
+        }
+      }
+      else {
+        if (document.getElementById('home')) {
+          document.getElementById('home').classList.toggle('menu-active')
+        }
+      }
+  }
+
   render(){
     return (
       <header id="header">
@@ -13,8 +28,8 @@ class Navbar extends Component {
 
       <nav id="nav-menu-container">
         <ul className="nav-menu">
-          <li className="menu-active"><a href="/">Home</a></li>
-          <li><a href="/start">Start</a></li>
+          <li className="menu" id="home"><a href="/">Home</a></li>
+          <li className="menu" id="start"><a href="/start">Start</a></li>
         </ul>
       </nav>
     </div>
