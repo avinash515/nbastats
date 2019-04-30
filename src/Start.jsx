@@ -3,6 +3,9 @@ import Select from 'react-select';
 import axios from 'axios';
 import PlayerCard from './PlayerCard';
 import './css/style.css';
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+} from 'recharts';
 
 class Start extends Component {
 
@@ -46,6 +49,7 @@ class Start extends Component {
     });
   }
 
+
   render() {
 
     if(this.state.items != null){
@@ -61,6 +65,61 @@ class Start extends Component {
       var player2 = this.state.player2;
       console.log(player2);
     }
+    const temp = { twoplayers: false, ptbool: null, astbool: null, trbbool: null, stlbool: null, blkbool: null}
+    var player1points 
+    var player2points
+    var player1assists
+    var player2assists
+    var player1rebounds
+    var player2rebounds
+    var player1steals
+    var player2steals
+    var player1blocks
+    var player2blocks
+    if(this.state.player1.length !== 0 && this.state.player2.length !== 0){
+      // if(parseFloat(player1[0]["pts"]) > parseFloat(player2[0]["pts"])) {
+      //   console.log("player1 is greater")
+      // }
+      temp.twoplayers = true;
+      temp.ptbool = parseFloat(player1[0]["pts"]) > parseFloat(player2[0]["pts"]);
+      temp.astbool = parseFloat(player1[0]["ast"]) > parseFloat(player2[0]["ast"]);
+      temp.trbbool = parseFloat(player1[0]["trb"]) > parseFloat(player2[0]["trb"]);
+      temp.stlbool = parseFloat(player1[0]["stl"]) > parseFloat(player2[0]["stl"]);
+      temp.blkbool = parseFloat(player1[0]["blk"]) > parseFloat(player2[0]["blk"]);
+      player1points = parseFloat(player1[0]["pts"])
+      player2points = parseFloat(player2[0]["pts"])
+      player1assists = parseFloat(player1[0]["ast"])
+      player2assists = parseFloat(player2[0]["ast"])
+      player1rebounds = parseFloat(player1[0]["trb"])
+      player2rebounds = parseFloat(player2[0]["trb"])
+      player1steals = parseFloat(player1[0]["stl"])
+      player2steals = parseFloat(player2[0]["stl"])
+      player1blocks = parseFloat(player1[0]["blk"])
+      player2blocks = parseFloat(player2[0]["blk"])
+    }
+    const temp2 = { twoplayers: temp.twoplayers, ptbool: !temp.ptbool, astbool: !temp.astbool, trbbool: !temp.trbbool, stlbool: !temp.stlbool, blkbool: !temp.blkbool} 
+    
+    const data = [
+      {
+        name: 'Points', Player1: player1points, Player2: player2points,
+      },
+      {
+        name: 'Assists', Player1: player1assists, Player2: player2assists,
+      },
+      {
+        name: 'Rebounds', Player1: player1rebounds, Player2: player2rebounds,
+      },
+      {
+        name: 'Steals', Player1: player1steals, Player2: player2steals,
+      },
+      {
+        name: 'Blocks', Player1: player1blocks, Player2: player2blocks,
+      },
+    ];
+
+
+
+    
 
     return (
       <div id="about">
@@ -81,13 +140,29 @@ class Start extends Component {
         </div>
         <div className="card-deck">
           <div className="col-lg-6">
-              { player1.map(person => <PlayerCard key={person.rk} player={person}/>) }
+              { player1.map(person => <PlayerCard key={person.rk} player={person} bools={temp}/>) }
           </div>
           <div className="col-lg-6">
-              { player2.map(person => <PlayerCard key={person.rk} player={person}/>) }
+              { player2.map(person => <PlayerCard key={person.rk} player={person} bools={temp2}/>) }
           </div>
         </div>
       </div>
+      <BarChart
+        width={500}
+        height={300}
+        data={data}
+        margin={{
+          top: 5, right: 30, left: 20, bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="Player1" fill="#8884d8" />
+        <Bar dataKey="Player2" fill="#82ca9d" />
+      </BarChart>
     </div>
     );
   }

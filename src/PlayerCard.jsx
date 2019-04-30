@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import { prependOnceListener } from 'cluster';
 
 const PlayerCard = props => {
-  const { player: player = '', tm = null, pts = null, ast = null, trb = null, stl = null, blk = null } = props.player || {};
+  const { player: player = '', tm = null, pts = null, ast = null, trb = null, stl = null, blk = null } = props.player 
+  const { twoplayers = false, ptbool = null, astbool = null, trbbool = null, stlbool = null, blkbool = null} = props.bools || {};
 
   return (
     <div className="col-lg-12" style={{marginBottom: '2.5%'}}>
@@ -18,11 +20,24 @@ const PlayerCard = props => {
               <h6 className="card-subtitle mb-2 text-muted">
               {tm}
               </h6>
-              <p className="card-subtitle"><b>Points: </b>{pts}</p>
-              <p className="card-subtitle"><b>Assists: </b>{ast}</p>
-              <p className="card-subtitle"><b>Rebounds: </b>{trb}</p>
-              <p className="card-subtitle"><b>Steals: </b>{stl}</p>
-              <p className="card-subtitle"><b>Blocks: </b>{blk}</p>
+              {twoplayers === true &&
+                <div>
+                  <p className="card-subtitle" style={{backgroundColor: ptbool  ? "rgb(200, 244, 188)" : "rgb(244, 200, 188)", margin: 0, borderTop: "thin solid gray", borderBottom: "thin solid gray"}}><b>Points: </b>{pts}</p>
+                  <p className="card-subtitle" style={{backgroundColor: astbool  ? "rgb(200, 244, 188)" : "rgb(244, 200, 188)", margin: 0, borderTop: "thin solid gray", borderBottom: "thin solid gray"}}><b>Assists: </b>{ast}</p>
+                  <p className="card-subtitle" style={{backgroundColor: trbbool  ? "rgb(200, 244, 188)" : "rgb(244, 200, 188)", margin: 0, borderTop: "thin solid gray", borderBottom: "thin solid gray"}}><b>Rebounds: </b>{trb}</p>
+                  <p className="card-subtitle" style={{backgroundColor: stlbool  ? "rgb(200, 244, 188)" : "rgb(244, 200, 188)", margin: 0, borderTop: "thin solid gray", borderBottom: "thin solid gray"}}><b>Steals: </b>{stl}</p>
+                  <p className="card-subtitle" style={{backgroundColor: blkbool  ? "rgb(200, 244, 188)" : "rgb(244, 200, 188)", margin: 0, borderTop: "thin solid gray", borderBottom: "thin solid gray"}}><b>Blocks: </b>{blk}</p> 
+                </div>
+              }
+              {twoplayers === false && 
+                <div>
+                <p className="card-subtitle" style={{margin: 0}}><b>Points: </b>{pts}</p>
+                <p className="card-subtitle" style={{margin: 0}}><b>Assists: </b>{ast}</p> 
+                <p className="card-subtitle" style={{margin: 0}}><b>Rebounds: </b>{trb}</p> 
+                <p className="card-subtitle" style={{margin: 0}}><b>Steals: </b>{stl}</p>
+                <p className="card-subtitle" style={{margin: 0}}><b>Blocks: </b>{blk}</p>
+                </div>
+              }
             </div>
         </div>
       </div>
