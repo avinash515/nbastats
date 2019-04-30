@@ -46,7 +46,8 @@ class Query:
             "threep": "{}".format(self.THREEP),
             "threeppct": "{}".format(self.THREEPPCT),
             "ft": "{}".format(self.FT),
-            "ftpct": "{}".format(self.FTPCT)
+            "ftpct": "{}".format(self.FTPCT),
+            "rk": "{}".format(self.Rk)
         }
 
     self.players = Players

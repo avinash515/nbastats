@@ -569,6 +569,10 @@ body.mobile-nav-active #mobile-nav-toggle {
   color: #111;
 }
 
+#about .about-container .card p {
+  color: #111;
+}
+
 #about .about-container .icon-box .description {
   margin-left: 80px;
   line-height: 24px;
