@@ -47,6 +47,7 @@ class Start extends Component {
     axios.get(url).then(response => {
       this.setState({player2: response.data});
     });
+    document.getElementById("barchart").style.display = "flex";
   }
 
 
@@ -59,6 +60,7 @@ class Start extends Component {
     if(this.state.player1 != null){
       var player1 = this.state.player1;
       console.log(player1);
+
     }
 
     if(this.state.player2 != null){
@@ -66,7 +68,7 @@ class Start extends Component {
       console.log(player2);
     }
     const temp = { twoplayers: -1, ptbool: null, astbool: null, trbbool: null, stlbool: null, blkbool: null}
-    var player1points 
+    var player1points
     var player2points
     var player1assists
     var player2assists
@@ -97,8 +99,8 @@ class Start extends Component {
       player1blocks = parseFloat(player1[0]["blk"])
       player2blocks = parseFloat(player2[0]["blk"])
     }
-    const temp2 = { twoplayers: temp.twoplayers, ptbool: -temp.ptbool, astbool: -temp.astbool, trbbool: -temp.trbbool, stlbool: -temp.stlbool, blkbool: -temp.blkbool} 
-    
+    const temp2 = { twoplayers: temp.twoplayers, ptbool: -temp.ptbool, astbool: -temp.astbool, trbbool: -temp.trbbool, stlbool: -temp.stlbool, blkbool: -temp.blkbool}
+
     const data = [
       {
         name: 'Points', Player1: player1points, Player2: player2points,
@@ -119,7 +121,7 @@ class Start extends Component {
 
 
 
-    
+
 
     return (
       <div id="about">
@@ -146,23 +148,27 @@ class Start extends Component {
               { player2.map(person => <PlayerCard key={person.rk} player={person} bools={temp2}/>) }
           </div>
         </div>
+        <div className="row">
+          <div className="col-lg-11 col-centered" id="barchart" style={{display: "none", justifyContent: "center"}}>
+            <BarChart
+              width={500}
+              height={300}
+              data={data}
+              margin={{
+                top: 5, right: 30, left: 20, bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="Player1" fill="#8884d8"  id="player1name"/>
+              <Bar dataKey="Player2" fill="#82ca9d" id="player2name"/>
+            </BarChart>
+            </div>
+        </div>
       </div>
-      <BarChart
-        width={500}
-        height={300}
-        data={data}
-        margin={{
-          top: 5, right: 30, left: 20, bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="Player1" fill="#8884d8" />
-        <Bar dataKey="Player2" fill="#82ca9d" />
-      </BarChart>
     </div>
     );
   }
