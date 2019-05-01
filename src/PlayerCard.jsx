@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const PlayerCard = props => {
   const { player: player = '', tm = null, pts = null, ast = null, trb = null, stl = null, blk = null } = props.player 
-  const { twoplayers = false, ptbool = null, astbool = null, trbbool = null, stlbool = null, blkbool = null} = props.bools || {};
+  const { twoplayers = -1, ptbool = null, astbool = null, trbbool = null, stlbool = null, blkbool = null} = props.bools || {};
 
   return (
     <div className="col-lg-12" style={{marginBottom: '2.5%'}}>
@@ -20,16 +20,16 @@ const PlayerCard = props => {
               <h6 className="card-subtitle mb-2 text-muted">
               {tm}
               </h6>
-              {twoplayers === true &&
+              {twoplayers === 1 &&
                 <div>
-                  <p className="card-subtitle" style={{backgroundColor: ptbool  ? "rgb(200, 244, 188)" : "rgb(244, 200, 188)", margin: 0, borderTop: "thin solid gray", borderBottom: "thin solid gray"}}><b>Points: </b>{pts}</p>
-                  <p className="card-subtitle" style={{backgroundColor: astbool  ? "rgb(200, 244, 188)" : "rgb(244, 200, 188)", margin: 0, borderTop: "thin solid gray", borderBottom: "thin solid gray"}}><b>Assists: </b>{ast}</p>
-                  <p className="card-subtitle" style={{backgroundColor: trbbool  ? "rgb(200, 244, 188)" : "rgb(244, 200, 188)", margin: 0, borderTop: "thin solid gray", borderBottom: "thin solid gray"}}><b>Rebounds: </b>{trb}</p>
-                  <p className="card-subtitle" style={{backgroundColor: stlbool  ? "rgb(200, 244, 188)" : "rgb(244, 200, 188)", margin: 0, borderTop: "thin solid gray", borderBottom: "thin solid gray"}}><b>Steals: </b>{stl}</p>
-                  <p className="card-subtitle" style={{backgroundColor: blkbool  ? "rgb(200, 244, 188)" : "rgb(244, 200, 188)", margin: 0, borderTop: "thin solid gray", borderBottom: "thin solid gray"}}><b>Blocks: </b>{blk}</p> 
+                  <p className="card-subtitle" style={{backgroundColor: ptbool > 0 ? "rgb(200, 244, 188)" : ptbool < 0 ? "rgb(244, 200, 188)" : "rgb(244, 240, 188)", margin: 0, borderTop: "thin solid gray", borderBottom: "thin solid gray"}}><b>Points: </b>{pts}</p>
+                  <p className="card-subtitle" style={{backgroundColor: astbool > 0  ? "rgb(200, 244, 188)" : astbool < 0 ? "rgb(244, 200, 188)" : "rgb(244, 240, 188)", margin: 0, borderTop: "thin solid gray", borderBottom: "thin solid gray"}}><b>Assists: </b>{ast}</p>
+                  <p className="card-subtitle" style={{backgroundColor: trbbool > 0 ? "rgb(200, 244, 188)" : trbbool < 0 ? "rgb(244, 200, 188)" : "rgb(244, 240, 188)", margin: 0, borderTop: "thin solid gray", borderBottom: "thin solid gray"}}><b>Rebounds: </b>{trb}</p>
+                  <p className="card-subtitle" style={{backgroundColor: stlbool > 0  ? "rgb(200, 244, 188)" : stlbool < 0 ? "rgb(244, 200, 188)" : "rgb(244, 240, 188)", margin: 0, borderTop: "thin solid gray", borderBottom: "thin solid gray"}}><b>Steals: </b>{stl}</p>
+                  <p className="card-subtitle" style={{backgroundColor: blkbool > 0 ? "rgb(200, 244, 188)" : blkbool < 0 ? "rgb(244, 200, 188)" : "rgb(244, 240, 188)", margin: 0, borderTop: "thin solid gray", borderBottom: "thin solid gray"}}><b>Blocks: </b>{blk}</p> 
                 </div>
               }
-              {twoplayers === false && 
+              {twoplayers === -1 && 
                 <div>
                 <p className="card-subtitle" style={{margin: 0}}><b>Points: </b>{pts}</p>
                 <p className="card-subtitle" style={{margin: 0}}><b>Assists: </b>{ast}</p> 

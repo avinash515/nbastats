@@ -65,7 +65,7 @@ class Start extends Component {
       var player2 = this.state.player2;
       console.log(player2);
     }
-    const temp = { twoplayers: false, ptbool: null, astbool: null, trbbool: null, stlbool: null, blkbool: null}
+    const temp = { twoplayers: -1, ptbool: null, astbool: null, trbbool: null, stlbool: null, blkbool: null}
     var player1points 
     var player2points
     var player1assists
@@ -80,12 +80,12 @@ class Start extends Component {
       // if(parseFloat(player1[0]["pts"]) > parseFloat(player2[0]["pts"])) {
       //   console.log("player1 is greater")
       // }
-      temp.twoplayers = true;
-      temp.ptbool = parseFloat(player1[0]["pts"]) > parseFloat(player2[0]["pts"]);
-      temp.astbool = parseFloat(player1[0]["ast"]) > parseFloat(player2[0]["ast"]);
-      temp.trbbool = parseFloat(player1[0]["trb"]) > parseFloat(player2[0]["trb"]);
-      temp.stlbool = parseFloat(player1[0]["stl"]) > parseFloat(player2[0]["stl"]);
-      temp.blkbool = parseFloat(player1[0]["blk"]) > parseFloat(player2[0]["blk"]);
+      temp.twoplayers = 1;
+      temp.ptbool = parseFloat(player1[0]["pts"]) - parseFloat(player2[0]["pts"]);
+      temp.astbool = parseFloat(player1[0]["ast"]) - parseFloat(player2[0]["ast"]);
+      temp.trbbool = parseFloat(player1[0]["trb"]) - parseFloat(player2[0]["trb"]);
+      temp.stlbool = parseFloat(player1[0]["stl"]) - parseFloat(player2[0]["stl"]);
+      temp.blkbool = parseFloat(player1[0]["blk"]) - parseFloat(player2[0]["blk"]);
       player1points = parseFloat(player1[0]["pts"])
       player2points = parseFloat(player2[0]["pts"])
       player1assists = parseFloat(player1[0]["ast"])
@@ -97,7 +97,7 @@ class Start extends Component {
       player1blocks = parseFloat(player1[0]["blk"])
       player2blocks = parseFloat(player2[0]["blk"])
     }
-    const temp2 = { twoplayers: temp.twoplayers, ptbool: !temp.ptbool, astbool: !temp.astbool, trbbool: !temp.trbbool, stlbool: !temp.stlbool, blkbool: !temp.blkbool} 
+    const temp2 = { twoplayers: temp.twoplayers, ptbool: -temp.ptbool, astbool: -temp.astbool, trbbool: -temp.trbbool, stlbool: -temp.stlbool, blkbool: -temp.blkbool} 
     
     const data = [
       {
