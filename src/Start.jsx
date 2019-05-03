@@ -22,7 +22,7 @@ class Start extends Component {
 
   componentDidMount() {
     var players = [];
-    axios.get("http://localhost:5000/").then(response => {
+    axios.get("http://23.101.141.188/").then(response => {
       var data = response.data;
       if (data != null){
         for(var index in data){
@@ -35,7 +35,7 @@ class Start extends Component {
 
   selectPlayer1(p){
     var player = p.value;
-    let url = "http://localhost:5000/?player=" + player.replace(" ", "%20");
+    let url = "http://23.101.141.188/?player=" + player.replace(" ", "%20");
     axios.get(url).then(response => {
       this.setState({player1: response.data});
     });
@@ -43,7 +43,7 @@ class Start extends Component {
 
   selectPlayer2(p){
     var player = p.value;
-    let url = "http://localhost:5000/?player=" + player.replace(" ", "%20");
+    let url = "http://23.101.141.188/?player=" + player.replace(" ", "%20");
     axios.get(url).then(response => {
       this.setState({player2: response.data});
     });
