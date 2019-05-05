@@ -15,6 +15,7 @@ COPY package.json /usr/src/app/package.json
 RUN npm install --silent
 RUN npm install --save-dev react-scripts
 # RUN npm audit fix
+RUN npm test
 RUN npm run build --production
 RUN npm install -g serve
 CMD serve -s build
