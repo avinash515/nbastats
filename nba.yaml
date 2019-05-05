@@ -1,29 +1,29 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nbaapp
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: nbaapp
-  template:
-    metadata:
-      labels:
-        app: nbaapp
-    spec:
-      nodeSelector:
-        "beta.kubernetes.io/os": linux
-      containers:
-      - name: nbaapp
-        image: tiangolo/uwsgi-nginx-flask:python3.7
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
-          limits:
-            cpu: 250m
-            memory: 256Mi
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: nbaapp
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: nbaapp
+#   template:
+#     metadata:
+#       labels:
+#         app: nbaapp
+#     spec:
+#       nodeSelector:
+#         "beta.kubernetes.io/os": linux
+#       containers:
+#       - name: nbaapp
+#         image: tiangolo/uwsgi-nginx-flask:python3.7
+#         resources:
+#           requests:
+#             cpu: 100m
+#             memory: 128Mi
+#           limits:
+#             cpu: 250m
+#             memory: 256Mi
         # ports:
         # - containerPort: 6379
         #   name: redis
@@ -60,12 +60,12 @@ spec:
         resources:
           requests:
             cpu: 100m
-            memory: 128Mi
+            memory: 256Mi
           limits:
             cpu: 250m
-            memory: 256Mi
+            memory: 512Mi
         ports:
-        - containerPort: 80
+        - containerPort: 5000
         # env:
         # - name: REDIS
         #   value: "azure-vote-back"
@@ -77,6 +77,6 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 80
+  - port: 5000
   selector:
     app: nbaappfrontend

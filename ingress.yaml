@@ -1,0 +1,10 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nba-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: myAKSPublicIP
+spec:
+  backend:
+    serviceName: nbastatic
+    servicePort: 3000
