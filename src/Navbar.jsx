@@ -10,6 +10,11 @@ class Navbar extends Component {
           document.getElementById('start').classList.toggle('menu-active')
         }
       }
+      else if(path.includes('/tools')){
+        if (document.getElementById('tools')) {
+          document.getElementById('tools').classList.toggle('menu-active')
+        }
+      }
       else {
         if (document.getElementById('home')) {
           document.getElementById('home').classList.toggle('menu-active')
@@ -30,6 +35,7 @@ class Navbar extends Component {
         <ul className="nav-menu">
           <li className="menu" id="home"><a href="/">Home</a></li>
           <li className="menu" id="start"><a href="/start">Start</a></li>
+          <li className="menu" id="tools"><a href="/tools">Tools</a></li>
         </ul>
       </nav>
     </div>
