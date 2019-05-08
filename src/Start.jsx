@@ -128,7 +128,7 @@ class Start extends Component {
       <div className="container">
         <div className="row about-container">
           <div className="col-lg-12 content">
-            <h2 className="title">Pick Your Players</h2>
+            <h2 className="title">Please Pick Your Players</h2>
             <p>
               Select two players and compare their statistics from this current season.
             </p>
